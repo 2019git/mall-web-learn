@@ -130,6 +130,7 @@
 <style scoped>
   #home {
     padding-top: 44px;
+    height: 100vh;
   }
 
   .nav-bar-home {
