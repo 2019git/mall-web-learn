@@ -3,56 +3,25 @@
     <nav-bar class="nav-bar-home">
       <div slot="center">购物街</div>
     </nav-bar>
-    <home-swiper :banner="banner"></home-swiper>
-    <recommend-view :recommend="recommend"></recommend-view>
-    <feature-view></feature-view>
-    <tab-control :titles="['流行','新款','精选']" class="tab-control" @tab-control-click="tabControlClick"></tab-control>
-    <goods-list :goodsList = "showGoods"></goods-list>
-    <ul>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-    </ul>
+
+    <better-scroll class="content" ref="scroll" :probeType = "3" :pullUpload = "true" @isBackTopShow="isBackTopShow">
+      <home-swiper :banner="banner"></home-swiper>
+      <recommend-view :recommend="recommend"></recommend-view>
+      <feature-view></feature-view>
+      <tab-control :titles="['流行','新款','精选']" class="tab-control" @tab-control-click="tabControlClick"></tab-control>
+      <goods-list :goodsList = "showGoods"></goods-list>
+    </better-scroll>
+    <back-top v-show="backTopShow" @click.native="backTopClick"></back-top>
   </div>
 </template>
 
 <script>
   import NavBar from '@/components/common/navbar/NavBar.vue'
+  import BetterScroll from '@/components/common/scroll/BetterScroll'
+
   import TabControl from '@/components/content/tabControl/TabControl'
   import GoodsList from '@/components/content/goods/GoodsList'
+  import BackTop from '@/components/content/backTop/BackTop'
 
   import HomeSwiper from './childrenviews/HomeSwiper'
   import RecommendView from './childrenviews/RecommendView'
@@ -68,8 +37,11 @@
       FeatureView,
 
       NavBar,
+      BetterScroll,
+
       TabControl,
-      GoodsList
+      GoodsList,
+      BackTop
     },
     data() {
       return {
@@ -80,7 +52,8 @@
           'new': {page: 0, list: []},
           'sell': {page: 0, list: []}
         },
-        currentGoodsType: 'pop'
+        currentGoodsType: 'pop',
+        backTopShow: false
       }
     },
     created() {
@@ -122,6 +95,12 @@
              this.goods[type].list.push(...res)
            }
         })
+      },
+      isBackTopShow(position){
+        this.backTopShow = -position.y > 500 ? true : false
+      },
+      backTopClick(){
+        this.$refs.scroll.backTop(0, 0, 500)
       }
     }
   }
@@ -129,8 +108,9 @@
 
 <style scoped>
   #home {
-    padding-top: 44px;
+    /*padding-top: 44px;*/
     height: 100vh;
+    position: relative;
   }
 
   .nav-bar-home {
@@ -150,4 +130,20 @@
     top: 40px;
     z-index: 9;
   }
+
+  .content {
+    overflow: hidden;
+
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
+  }
+
+  /*.content {*/
+    /*height: calc(100% - 93px);*/
+    /*overflow: hidden;*/
+    /*margin-top: 44px;*/
+  /*}*/
 </style>
