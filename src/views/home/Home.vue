@@ -28,6 +28,7 @@
   import FeatureView from './childrenviews/FeatureView'
 
   import {getHomeMultidata, getHomeGoods} from '@/network/home.js'
+  import {debounce} from '@/common/utils'
 
   export default {
     name: "Home",
@@ -61,6 +62,12 @@
       this.getHomeGoods( 'pop')
       this.getHomeGoods( 'new')
       this.getHomeGoods( 'sell')
+    },
+    mounted() {
+      // 通过$bus接收事件，用于 非父子组件的通信
+      this.$bus.$on('goodsImgLoad', () => {
+        debounce(this.$refs.scroll.refresh, 100)();
+      })
     },
     computed:{
       showGoods(){
