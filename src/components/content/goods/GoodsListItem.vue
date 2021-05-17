@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="goodsClick">
     <img :src="goods.img" @load="goodsImgLoad">
     <div class="goods-info">
       <p>{{goods.title}}</p>
@@ -21,9 +21,18 @@
       }
     },
     methods: {
+      /**
+       * 商品图片加载事件
+       */
       goodsImgLoad() {
         //通过$bus发出事件，用于 非父子组件的通信
         this.$bus.$emit("goodsImgLoad");
+      },
+      /**
+       * 商品点击事件
+       */
+      goodsClick() {
+        this.$router.push('/goodsDetails/' + this.goods.id)
       }
     }
   }
