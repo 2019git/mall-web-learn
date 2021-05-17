@@ -3,12 +3,13 @@
     <nav-bar class="nav-bar-home">
       <div slot="center">购物街</div>
     </nav-bar>
+    <tab-control :titles="['流行','新款','精选']" @tab-control-click="tabControlClick" ref="tabControl1" v-show="isOffsetTop" class="tab-control" ></tab-control>
 
     <better-scroll class="content" ref="scroll" :probeType = "3" :pullUpload = "true" @isBackTopShow="isBackTopShow">
-      <home-swiper :banner="banner"></home-swiper>
+      <home-swiper :banner="banner" @load-tab-control-location = "loadTabControlLocation"></home-swiper>
       <recommend-view :recommend="recommend"></recommend-view>
       <feature-view></feature-view>
-      <tab-control :titles="['流行','新款','精选']" class="tab-control" @tab-control-click="tabControlClick"></tab-control>
+      <tab-control :titles="['流行','新款','精选']" @tab-control-click="tabControlClick" ref="tabControl2"></tab-control>
       <goods-list :goodsList = "showGoods"></goods-list>
     </better-scroll>
     <back-top v-show="backTopShow" @click.native="backTopClick"></back-top>
@@ -54,20 +55,44 @@
           'sell': {page: 0, list: []}
         },
         currentGoodsType: 'pop',
-        backTopShow: false
+        backTopShow: false,
+        tabControlLocation : 0,
+        isOffsetTop: false,
+        scrollY: 0
       }
     },
+    /**
+     * 创建vue页面时调用
+     */
     created() {
       this.getHomeMultidata()
       this.getHomeGoods( 'pop')
       this.getHomeGoods( 'new')
       this.getHomeGoods( 'sell')
     },
+    /**
+     * 初始化页面完成后调用
+     */
     mounted() {
       // 通过$bus接收事件，用于 非父子组件的通信
       this.$bus.$on('goodsImgLoad', () => {
         debounce(this.$refs.scroll.refresh, 100)();
       })
+    },
+
+    /**
+     * 进入页面调用
+     */
+    activated(){
+      this.$refs.scroll.scrollTo(0, this.scrollY, 0)
+      this.$refs.scroll.refresh()
+    },
+
+    /**
+     * 离开页面调用
+     */
+    deactivated(){
+      this.scrollY = this.$refs.scroll.scroll.y;
     },
     computed:{
       showGoods(){
@@ -75,6 +100,9 @@
       }
     },
     methods: {
+      /**
+       * tab-control选项卡
+       */
       tabControlClick(index){
         switch (index) {
           case 0:
@@ -87,6 +115,8 @@
             this.currentGoodsType = 'sell'
             break
         }
+        this.$refs.tabControl1.currentIndex = index
+        this.$refs.tabControl2.currentIndex = index
       },
       getHomeMultidata(){
         getHomeMultidata().then(res => {
@@ -103,11 +133,21 @@
            }
         })
       },
+      /**
+       * better-scroll位置判断
+       */
       isBackTopShow(position){
         this.backTopShow = -position.y > 500 ? true : false
+        this.isOffsetTop = -position.y >= this.tabControlLocation
       },
       backTopClick(){
         this.$refs.scroll.backTop(0, 0, 500)
+      },
+      /**
+       * 加载tab-control位置
+       */
+      loadTabControlLocation(){
+        this.tabControlLocation = this.$refs.tabControl2.$el.offsetTop
       }
     }
   }
@@ -124,17 +164,16 @@
     background-color: var(--color-tint);
     color: white;
 
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
     /*设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面*/
     z-index: 100;
   }
 
   .tab-control {
-    position: sticky;
-    top: 40px;
+    position: relative;
     z-index: 9;
   }
 
