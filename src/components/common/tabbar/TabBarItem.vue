@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-bar-item" @click="itemBtnClick">
+  <div class="tab-bar-item" @click="itemBtnClick" :class="{isDisabled: clickIsDisabled}">
     <div v-if = "!isActive">
       <slot name = "item-icon"></slot>
     </div>
@@ -22,6 +22,11 @@
           default: 'red'
         }
       },
+      data() {
+        return {
+          clickIsDisabled: false
+        }
+      },
       computed:{
         isActive(){
           // return this.$route.path.indexOf(this.path) !== -1 ? true : false
@@ -33,7 +38,13 @@
       },
       methods:{
         itemBtnClick(){
-          this.$router.replace(this.path)
+          this.clickIsDisabled = true
+          if (this.path !== this.$route.path) {
+            this.$router.push(this.path)
+          }
+          setTimeout(() => {
+            this.clickIsDisabled = false
+          }, 2000)
         }
       }
     }
@@ -53,5 +64,10 @@
     margin-top: 3px;
     vertical-align: middle;
     margin-bottom: 2px;
+  }
+
+  .isDisabled {
+    /* 禁止点击事件 */
+    pointer-events: none;
   }
 </style>

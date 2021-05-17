@@ -84,7 +84,7 @@
      * 进入页面调用
      */
     activated(){
-      this.$refs.scroll.scrollTo(0, this.scrollY, 0)
+      this.$refs.scroll.scroll.scrollTo(0, this.scrollY, 0)
       this.$refs.scroll.refresh()
     },
 
