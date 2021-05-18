@@ -77,6 +77,10 @@ const goodsData = {
 
 export class GoodsList{
   constructor(){
-    this.goods = goodsData.goodsData1.push(...goodsData.goodsData2.push(...goodsData.goodsData3))
+    let data = [];
+    data.push(...goodsData.goodsData1)
+    data.push(...goodsData.goodsData2)
+    data.push(...goodsData.goodsData3)
+    this.goods = data
   }
 }

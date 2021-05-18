@@ -12,21 +12,36 @@ export function getGoodsDetails(id) {
     itemInfo: {
       //轮播图图片
       topImages: [
-
+        good.img, '@/assets/img/goods/goods0.jpg'
       ],
       id: id,
-      title: '',
+      title: good.title,
       desc: '',
-      realPrice: '',
-      newPrice: '',
-      oldPrice: '',
-      discount: '',
+      realPrice: good.price,
+      newPrice: good.price,
+      oldPrice: good.price * 1.5,
+      discount: '活动价',
       columns : [
-
+        '销量' + good.cfav * 2, '收藏' + good.cfav, '72小时发货'
       ],
       services: [
-
+        {
+          'icon': '@/assets/img/goods/serve.svg',
+          'name': '可派送港澳台'
+        },
+        {
+          'icon': '@/assets/img/goods/serve.svg',
+          'name': '店铺发货&售后'
+        },
+        {
+          'icon': '@/assets/img/goods/serve.svg',
+          'name': '7天无理由退货'
+        },
       ]
     }
   }
+
+  return new Promise((resolve, reject) => {
+    resolve(details)
+  })
 }
