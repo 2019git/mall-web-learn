@@ -1,3 +1,4 @@
+<!-- 标签栏 -->
 <template>
   <div id="tab-bar">
     <slot></slot>

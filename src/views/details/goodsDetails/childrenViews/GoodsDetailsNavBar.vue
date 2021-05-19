@@ -1,3 +1,4 @@
+<!-- 商品详情页最上层导航栏 -->
 <template>
   <nav-bar>
     <img slot="left" class="item-img" src="@/assets/img/common/back.svg" @click="imgClick"/>

@@ -1,3 +1,4 @@
+<!-- 标签栏最外层页面 -->
 <template>
   <TabBar>
     <TabBarItem path = "/home">
@@ -26,6 +27,7 @@
 <script>
   import TabBar from '@/components/common/tabbar/TabBar'
   import TabBarItem from '@/components/common/tabbar/TabBarItem'
+
   export default {
     name: "TabBarMain",
     components:{

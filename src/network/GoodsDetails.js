@@ -6,13 +6,12 @@ import {GoodsList} from './home'
  */
 export function getGoodsDetails(id) {
   let goodsList = new GoodsList();
-  let good = goodsList.goods.filter(o => o.id === id);
-
+  let good = goodsList.goods.filter(o => o.id === id)[0]
   const details = {
     itemInfo: {
       //轮播图图片
       topImages: [
-        good.img, '@/assets/img/goods/goods0.jpg'
+        good.img, require('@/assets/img/goods/goods0.jpg')
       ],
       id: id,
       title: good.title,

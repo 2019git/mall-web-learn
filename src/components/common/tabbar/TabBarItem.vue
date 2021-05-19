@@ -1,3 +1,4 @@
+<!-- 标签栏item -->
 <template>
   <div class="tab-bar-item" @click="itemBtnClick" :class="{isDisabled: clickIsDisabled}">
     <div v-if = "!isActive">
@@ -13,41 +14,41 @@
 </template>
 
 <script>
-    export default {
-      name: "TabBarItem",
-      props:{
-        path:String,
-        activeColor:{
-          type: String,
-          default: 'red'
-        }
+  export default {
+    name: "TabBarItem",
+    props:{
+      path:String,
+      activeColor:{
+        type: String,
+        default: 'red'
+      }
+    },
+    data() {
+      return {
+        clickIsDisabled: false
+      }
+    },
+    computed:{
+      isActive(){
+        // return this.$route.path.indexOf(this.path) !== -1 ? true : false
+        return this.$route.path === this.path ? true : false
       },
-      data() {
-        return {
-          clickIsDisabled: false
+      activeStyle(){
+        return this.isActive ? {color: this.activeColor} : {}
+      }
+    },
+    methods:{
+      itemBtnClick(){
+        this.clickIsDisabled = true
+        if (this.path !== this.$route.path) {
+          this.$router.push(this.path)
         }
-      },
-      computed:{
-        isActive(){
-          // return this.$route.path.indexOf(this.path) !== -1 ? true : false
-          return this.$route.path === this.path ? true : false
-        },
-        activeStyle(){
-          return this.isActive ? {color: this.activeColor} : {}
-        }
-      },
-      methods:{
-        itemBtnClick(){
-          this.clickIsDisabled = true
-          if (this.path !== this.$route.path) {
-            this.$router.push(this.path)
-          }
-          setTimeout(() => {
-            this.clickIsDisabled = false
-          }, 2000)
-        }
+        setTimeout(() => {
+          this.clickIsDisabled = false
+        }, 2000)
       }
     }
+  }
 </script>
 
 <style scoped>

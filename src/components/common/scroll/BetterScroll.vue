@@ -1,3 +1,4 @@
+<!-- BetterScroll页面滑动插件vue -->
 <template>
   <div class="wrapper" ref="wrapper">
     <div class="content">
@@ -35,7 +36,7 @@
           },
           //决定是否派发 scroll 事件，对页面的性能有影响,0不派发，3任何时候都派发
           probeType: this.probeType,
-         //触发上拉事件的阈值, 用于派发 pullingUp 事件
+          //触发上拉事件的阈值, 用于派发 pullingUp 事件
           pullUpLoad: this.pullUpload
         }
       )
