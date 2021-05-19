@@ -18,22 +18,22 @@ export function getGoodsDetails(id) {
       desc: '',
       realPrice: good.price,
       newPrice: good.price,
-      oldPrice: good.price * 1.5,
+      oldPrice: (good.price * 1.50),
       discount: '活动价',
       columns : [
-        '销量' + good.cfav * 2, '收藏' + good.cfav, '72小时发货'
+        '销量 ' + good.cfav * 2, '收藏 ' + good.cfav, '72小时发货'
       ],
       services: [
         {
-          'icon': '@/assets/img/goods/serve.svg',
+          'icon': require('@/assets/img/goods/serve.svg'),
           'name': '可派送港澳台'
         },
         {
-          'icon': '@/assets/img/goods/serve.svg',
+          'icon': require('@/assets/img/goods/serve.svg'),
           'name': '店铺发货&售后'
         },
         {
-          'icon': '@/assets/img/goods/serve.svg',
+          'icon': require('@/assets/img/goods/serve.svg'),
           'name': '7天无理由退货'
         },
       ]

@@ -36,7 +36,7 @@
     font-size: 12px;
     /*padding 简写属性在一个声明中设置所有内边距属性*/
     padding: 10px 0 20px;
-    /*设置下边框的样式*/
+    /*设置下边框的样式 底部划线*/
     border-bottom: 10px solid #eee;
   }
 
