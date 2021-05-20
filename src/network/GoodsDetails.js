@@ -39,7 +39,7 @@ export function getGoodsDetails(id) {
       ],
       /* 商家信息 */
       shopInfo: {
-        shopLogo: '',
+        shopLogo: require('@/assets/img/goods/head.png'),
         name: '南极人',
         score: [
           {
