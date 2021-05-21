@@ -6,6 +6,7 @@
       <goods-details-base-info :goodsInfo="details"/>
       <goods-details-shop-info :shop-info="shopInfo"/>
       <goods-details-info :detail-info="detailInfo" @img-load="_imgLoad"/>
+      <goods-details-params :params-info="paramsInfo"/>
     </better-scroll>
   </div>
 </template>
@@ -20,6 +21,7 @@
   import GoodsDetailsBaseInfo from './childrenViews/GoodsDetailsBaseInfo'
   import GoodsDetailsShopInfo from './childrenViews/GoodsDetailsShopInfo'
   import GoodsDetailsInfo from './childrenViews/GoodsDetailsInfo'
+  import GoodsDetailsParams from './childrenViews/GoodsDetailsParams'
 
   export default {
     name: "GoodsDetails",
@@ -29,6 +31,7 @@
       GoodsDetailsBaseInfo,
       GoodsDetailsShopInfo,
       GoodsDetailsInfo,
+      GoodsDetailsParams,
 
       BetterScroll
     },
@@ -38,7 +41,8 @@
         topImages: [],
         details: {},
         shopInfo: {},
-        detailInfo: {}
+        detailInfo: {},
+        paramsInfo: {}
       }
     },
     created() {
@@ -56,14 +60,13 @@
           this.details = res.itemInfo
           this.shopInfo = res.itemInfo.shopInfo
           this.detailInfo = res.itemInfo.detailInfo;
+          this.paramsInfo = res.itemInfo.itemParams;
           console.log(res);
         })
       },
       /* 商品详情图片加载完成调用，刷新scroll */
       _imgLoad() {
-        console.log('scroll-Y:' + this.$refs.scroll.scroll.y);
         this.$refs.scroll.refresh()
-        console.log('scroll-Y:' + this.$refs.scroll.scroll.y);
       }
     }
   }

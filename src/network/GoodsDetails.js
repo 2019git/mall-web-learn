@@ -70,7 +70,7 @@ export function getGoodsDetails(id) {
       itemParams: {
         info: {
           key: '产品参数',
-          set: [
+          sets: [
             {key: '基础风格', value: '时尚都市'},
             {key: '厚度', value: '薄款'},
             {key: '材质', value: '棉'},
@@ -95,7 +95,6 @@ export function getGoodsDetails(id) {
             {name: '胸围', param1: '96', param2: '100', param3: '104', param4: '108'}
           ]
         }
-
       }
     }
   }
