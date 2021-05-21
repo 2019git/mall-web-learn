@@ -63,7 +63,7 @@ export function getGoodsDetails(id) {
       },
       /* 详情信息 */
       detailInfo: {
-        desc: '新款上市--',
+        desc: '新款上市--尚都比拉撞色立领雪纺衬衫气质春秋上衣设计感女小众百搭103C31848茱萸粉M',
         key: '商品介绍',
         detailImage: gainDetailImage(goodsList.goods)
       },

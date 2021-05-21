@@ -4,6 +4,7 @@
     <goods-details-swiper :topImages="topImages"/>
     <goods-details-base-info :goodsInfo="details"/>
     <goods-details-shop-info :shop-info="shopInfo"/>
+    <goods-details-info :detail-info="detailInfo"/>
   </div>
 </template>
 
@@ -14,6 +15,7 @@
   import GoodsDetailsSwiper from './childrenViews/GoodsDetailsSwiper'
   import GoodsDetailsBaseInfo from './childrenViews/GoodsDetailsBaseInfo'
   import GoodsDetailsShopInfo from './childrenViews/GoodsDetailsShopInfo'
+  import GoodsDetailsInfo from './childrenViews/GoodsDetailsInfo'
 
   export default {
     name: "GoodsDetails",
@@ -21,14 +23,16 @@
       GoodsDetailsNavBar,
       GoodsDetailsSwiper,
       GoodsDetailsBaseInfo,
-      GoodsDetailsShopInfo
+      GoodsDetailsShopInfo,
+      GoodsDetailsInfo
     },
     data(){
       return {
         goodsId: null,
         topImages: [],
         details: {},
-        shopInfo: {}
+        shopInfo: {},
+        detailInfo: {}
       }
     },
     created() {
@@ -45,6 +49,7 @@
           this.topImages = res.itemInfo.topImages
           this.details = res.itemInfo
           this.shopInfo = res.itemInfo.shopInfo
+          this.detailInfo = res.itemInfo.detailInfo;
           console.log(res);
         })
       }
