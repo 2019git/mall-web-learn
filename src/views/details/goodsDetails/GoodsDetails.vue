@@ -1,15 +1,19 @@
 <template>
-  <div>
-    <goods-details-nav-bar/>
-    <goods-details-swiper :topImages="topImages"/>
-    <goods-details-base-info :goodsInfo="details"/>
-    <goods-details-shop-info :shop-info="shopInfo"/>
-    <goods-details-info :detail-info="detailInfo"/>
+  <div class="goods-details">
+    <goods-details-nav-bar class="nav-bar"/>
+    <better-scroll class="content" ref="scroll" :probeType="3" :pullUpload="true">
+      <goods-details-swiper :topImages="topImages"/>
+      <goods-details-base-info :goodsInfo="details"/>
+      <goods-details-shop-info :shop-info="shopInfo"/>
+      <goods-details-info :detail-info="detailInfo" @img-load="_imgLoad"/>
+    </better-scroll>
   </div>
 </template>
 
 <script>
   import {getGoodsDetails} from '@/network/GoodsDetails'
+
+  import BetterScroll from '@/components/common/scroll/BetterScroll'
 
   import GoodsDetailsNavBar from './childrenViews/GoodsDetailsNavBar'
   import GoodsDetailsSwiper from './childrenViews/GoodsDetailsSwiper'
@@ -24,7 +28,9 @@
       GoodsDetailsSwiper,
       GoodsDetailsBaseInfo,
       GoodsDetailsShopInfo,
-      GoodsDetailsInfo
+      GoodsDetailsInfo,
+
+      BetterScroll
     },
     data(){
       return {
@@ -52,11 +58,34 @@
           this.detailInfo = res.itemInfo.detailInfo;
           console.log(res);
         })
+      },
+      /* 商品详情图片加载完成调用，刷新scroll */
+      _imgLoad() {
+        console.log('scroll-Y:' + this.$refs.scroll.scroll.y);
+        this.$refs.scroll.refresh()
+        console.log('scroll-Y:' + this.$refs.scroll.scroll.y);
       }
     }
   }
 </script>
 
 <style scoped>
+  .goods-details {
+    height: 100vh;
+    position: relative;
+    z-index: 8;
+    background-color: #fff;
+  }
 
+  .nav-bar {
+    position: relative;
+    z-index: 9;
+    background-color: white;
+  }
+
+  .content {
+    position: absolute;
+    top: 44px;
+    bottom: 60px;
+  }
 </style>

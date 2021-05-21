@@ -52,7 +52,8 @@ const goodsData = {
       title: '南极人高档品牌女装 衬衫女2021年春季新款时尚气质长袖衬衣女小衫设计感小众', price: '119.00', cfav: '8',id : '8'},
     {img: 'http://img11.360buyimg.com/n7/jfs/t1/194949/7/1672/209953/60949ab8Efdf50138/bd1c487543a2c5bf.jpg',
       title: '南极人 衬衫女2021年春季新款长袖衬衣女小衫设计感小众轻熟职业气质优雅复古', price: '128.00', cfav: '14',id : '9'},
-    {img: 'http://img13.360buyimg.com/n7/jfs/t1/196122/36/1649/213704/60949aa0E3b3fed5e/32824a51348ca7df.jpg',
+    {
+      img: 'http://img10.360buyimg.com/n2/s372x372_jfs/t1/160854/25/14844/157430/605c4021E5cee00ee/31f19b91280abedd.jpg!q70.dpg.webp',
       title: '南极人 长袖衬衫女2021年春季新款蝴蝶印花衬衣女装小衫设计感小众轻熟POLO', price: '122.00', cfav: '19',id : '10'},
     {img: 'http://img10.360buyimg.com/n7/jfs/t1/168583/11/14509/131142/605b51f5Ec262423d/bbcc873d7782a458.jpg',
       title: '惠珈芸 雪纺衬衫女高端黑色长袖职业装春秋气质2021年新款时尚显瘦洋气上衣衬衣', price: '499.00', cfav: '22',id : '11'},
@@ -70,7 +71,8 @@ const goodsData = {
       title: '尚都比拉气质立领纯色条纹提花雪纺女上', price: '122.00', cfav: '19',id : '16'},
     {img: 'http://img12.360buyimg.com/n7/jfs/t1/183667/20/2407/233504/6092c6a4Ec1ee3d83/93693901705965e1.jpg',
       title: '尚都比拉2021年春季新款简约衬衫领金属扣缎面雪纺衫女 清晨粉 M', price: '151.00', cfav: '73',id : '17'},
-    {img: 'http://img12.360buyimg.com/n7/jfs/t1/191325/4/1511/272860/6092cefeE8e258a93/c4166c3605dd6996.jpg',
+    {
+      img: 'http://img10.360buyimg.com/n2/s270x270_jfs/t1/151316/8/20173/163617/603859a7E16151cd2/310d9c735dbab438.jpg!q70.dpg',
       title: '尚都比拉镂空蕾丝拼接衬衫长袖春秋新款优雅复古纯色显瘦上衣女 黑色 XL', price: '189.00', cfav: '36',id : '18'}
   ]
 }

@@ -114,5 +114,8 @@ function gainRandom() {
 function gainDetailImage(goods) {
   let random = gainRandom();
   let detailImage = goods.filter(o => o.id > parseInt(random) && o.id <= parseInt(random) + 6).map(o => o.img);
+  if (detailImage.length === 0) {
+    detailImage = goods.filter(o => o.id > 0 && o.id <= 6).map(o => o.img)
+  }
   return detailImage;
 }

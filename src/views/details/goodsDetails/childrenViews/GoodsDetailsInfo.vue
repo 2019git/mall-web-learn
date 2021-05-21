@@ -1,3 +1,4 @@
+<!-- 商品详情 -->
 <template>
   <div class="detail-info">
     <div class="detail-info-desc">
@@ -8,7 +9,7 @@
     <div class="detail-info-image">
       <div class="detail-info-image-key">{{detailInfo.key}}</div>
       <div class="detail-info-image-list">
-        <img v-for="item in detailInfo.detailImage" :src="item">
+        <img v-for="item in detailInfo.detailImage" :src="item" @load="imgLoad">
       </div>
     </div>
   </div>
@@ -22,6 +23,29 @@
         type: Object,
         default: function () {
           return {}
+        }
+      }
+    },
+    data() {
+      return {
+        detailImageLength: 0,
+        counter: 0
+      }
+    },
+    /* 用来监听数据的变化 */
+    watch: {
+      'detailInfo.detailImage': {
+        handler() {
+          this.detailImageLength = this.detailInfo.detailImage.length
+        },
+        immediate: false
+      }
+    },
+    methods: {
+      imgLoad() {
+        this.counter++;
+        if (this.counter === this.detailImageLength) {
+          this.$emit('img-load')
         }
       }
     }
