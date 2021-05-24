@@ -95,6 +95,20 @@ export function getGoodsDetails(id) {
             {name: '胸围', param1: '96', param2: '100', param3: '104', param4: '108'}
           ]
         }
+      },
+      /* 评价信息 */
+      comment: {
+        count: 8,
+        list: [
+          {
+            userName: '拐角遇见你~',
+            userHead: require('@/assets/img/goods/commentUserHead.jpg'),
+            content: '',
+            createDate: 1621846356000,
+            style: '',
+            images: []
+          }
+        ]
       }
     }
   }
