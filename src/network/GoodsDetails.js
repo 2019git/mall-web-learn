@@ -1,5 +1,6 @@
 import request from './request'
 import {GoodsList} from './home'
+import {recommendData} from './data'
 
 /**
  * 商品详情信息请求接口
@@ -103,10 +104,27 @@ export function getGoodsDetails(id) {
           {
             userName: '拐角遇见你~',
             userHead: require('@/assets/img/goods/commentUserHead.jpg'),
-            content: '',
+            content: '衣服收到了，款式好看，尺码标准，穿着很舒服，很合适，非常不错，很有质感，面料摸上去也很舒服，穿上也很显瘦，整体效果很满意',
             createDate: 1621846356000,
-            style: '',
-            images: []
+            style: '颜色：图片色 型号：M',
+            images: [
+              'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/162523/9/14830/224578/605ea827Ee7afc940/2aab24632f810b59.jpg!cc_100x100!q70.dpg.webp',
+              'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/157015/22/15794/240144/605ea826Ee0d01985/e04a901b57636f0f.jpg!cc_100x100!q70.dpg.webp',
+              'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/170250/5/14659/225513/605ea827E4aea5172/f270317f2808ffc5.jpg!cc_100x100!q70.dpg.webp'
+            ]
+          },
+          {
+            userName: '低温艺术家之神级文明~',
+            userHead: require('@/assets/img/goods/commentUserHead.jpg'),
+            content: '款式简单好看，裙子的几何图案很特别不单调，穿上很修身，材质也是不错呢，款式不挑人推荐购买哟。',
+            createDate: 1621846356000,
+            style: '颜色：图片色 型号：L',
+            images: [
+              'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/168238/29/14962/315206/605f6fc6Ed32a87f2/238e268de31cc6c8.jpg!cc_100x100!q70.dpg.webp',
+              'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/160632/4/14989/455564/605f6fceE84e8d749/eaf60c3d96717720.jpg!cc_100x100!q70.dpg.webp',
+              'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/156931/6/18314/443508/605f6fcfE15cba2fb/86dbd757ecc925ca.jpg!cc_100x100!q70.dpg.webp',
+              'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/159212/6/14173/441823/605f6fceEafcbf954/01bc062b643641c1.jpg!cc_100x100!q70.dpg.webp'
+            ]
           }
         ]
       }
@@ -117,6 +135,12 @@ export function getGoodsDetails(id) {
     resolve(details)
   })
 }
+
+/* 推荐信息 */
+export function getRecommend() {
+  const data = recommendData;
+}
+
 
 function gainRandom() {
   const items = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
