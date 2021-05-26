@@ -1,5 +1,5 @@
 <template>
-  <div class="details-params">
+  <div class="details-params" v-if="Object.keys(paramsInfo).length !== 0">
     <div class="details-params-rule">
       <div class="details-params-rule-key">{{paramsInfo.rule.key}}</div>
       <div class="details-params-rule-value">
