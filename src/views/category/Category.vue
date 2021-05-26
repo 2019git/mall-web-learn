@@ -7,7 +7,8 @@
       ul>li{{列表$}}*100
       -->
     </nav-bar>
-    <category-list :category-list-info="categoryListInfo"/>
+    <category-list :category-list-info="categoryListInfo" @category-click="_categoryClick"/>
+    <category-list-item :category-item-info="categoryItemInfo"/>
   </div>
 </template>
 
@@ -16,8 +17,9 @@
   import BetterScroll from '@/components/common/scroll/BetterScroll'
 
   import CategoryList from './childrenViews/CategoryList'
+  import CategoryListItem from './childrenViews/CategoryListItem'
 
-  import {getCategoryList} from '@/network/Category.js'
+  import {getCategoryList, getCategoryItem} from '@/network/Category.js'
 
   export default {
     name: "Category",
@@ -25,20 +27,30 @@
       NavBar,
       BetterScroll,
 
-      CategoryList
+      CategoryList,
+      CategoryListItem
     },
     data() {
       return {
-        categoryListInfo: []
+        categoryListInfo: [],
+        categoryItemInfo: {}
       }
     },
     created() {
       this._getCategoryList();
     },
     methods: {
+      /* 获取分类列表数据 */
       _getCategoryList() {
         getCategoryList().then(res => {
           this.categoryListInfo = res;
+        })
+      },
+
+      /* 获取分类列表详情 */
+      _categoryClick(cid) {
+        getCategoryItem(cid).then(res => {
+          this.categoryItemInfo = res;
           console.log(res);
         })
       }

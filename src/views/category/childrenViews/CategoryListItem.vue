@@ -4,13 +4,21 @@
 
 <script>
   export default {
-    name: "CategoryListItem"
+    name: "CategoryListItem",
+    props: {
+      categoryItemInfo: {
+        type: Object,
+        default() {
+          return {};
+        }
+      }
+    }
   }
 </script>
 
 <style scoped>
   .category-right {
-    width: 70%;
+    width: 80%;
     background-color: #ff5777;
     float: right;
   }

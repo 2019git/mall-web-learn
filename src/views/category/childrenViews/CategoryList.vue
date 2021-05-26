@@ -1,6 +1,6 @@
 <template>
   <div class="category-left">
-    <div class="category-left-item" v-for="item in categoryListInfo">
+    <div class="category-left-item" v-for="item in categoryListInfo" @click="categoryClick(item.cid)">
       <span>{{item.name}}</span>
     </div>
   </div>
@@ -16,19 +16,25 @@
           return []
         }
       }
+    },
+    methods: {
+      categoryClick(cid) {
+        this.$emit('category-click', cid)
+      }
     }
   }
 </script>
 
 <style scoped>
   .category-left {
-    width: 30%;
-    background-color: #f2f5f8;
+    width: 20%;
+    background-color: #f8f8f8;
     float: left;
   }
 
   .category-left-item {
-    margin: 10px 10px 10px 10px;
     text-align: center;
+    height: 46px;
+    line-height: 46px;
   }
 </style>

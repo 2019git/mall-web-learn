@@ -251,7 +251,7 @@ export const category = [
 
 const imgUrl = "https://img30.360buyimg.com/focus/s140x140_jfs/";
 /* 分类详情 */
-const category_details = [
+export const category_details = [
   {
     "cid": "WQR2006",
     "items": [
