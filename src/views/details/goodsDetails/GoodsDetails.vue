@@ -15,6 +15,7 @@
 
 <script>
   import {getGoodsDetails, getRecommend} from '@/network/GoodsDetails'
+  import {imgLoadScrollRefreshListenerMixin} from '@/common/mixin'
 
   import BetterScroll from '@/components/common/scroll/BetterScroll'
 
@@ -50,13 +51,20 @@
         detailInfo: {},
         paramsInfo: {},
         comment: {},
-        recommendGoods: []
+        recommendGoods: [],
       }
     },
+    mixins: [imgLoadScrollRefreshListenerMixin],
     created() {
       this.goodsId = this.$route.params.id
       this._getGoodsDetails()
       this._getRecommend()
+    },
+    mounted() {
+    },
+    destroyed() {
+      /* 移除自定义事件监听器。只会移除这个回调的监听器。*/
+      this.$bus.$off('goodsImgLoad', this.imgLoadScrollRefreshListener)
     },
     methods: {
       /**
@@ -80,13 +88,12 @@
       _getRecommend: function () {
         getRecommend().then(res => {
           this.recommendGoods = res;
-          console.log(res);
         })
       },
       /* 商品详情图片加载完成调用，刷新scroll */
       _imgLoad() {
         this.$refs.scroll.refresh()
-      }
+      },
     }
   }
 </script>

@@ -29,7 +29,7 @@
   import FeatureView from './childrenviews/FeatureView'
 
   import {getHomeMultidata, getHomeGoods} from '@/network/home.js'
-  import {debounce} from '@/common/utils'
+  import {imgLoadScrollRefreshListenerMixin} from '@/common/mixin'
 
   export default {
     name: "Home",
@@ -61,6 +61,7 @@
         scrollY: 0
       }
     },
+    mixins: [imgLoadScrollRefreshListenerMixin],
     /**
      * 创建vue页面时调用
      */
@@ -74,10 +75,6 @@
      * 初始化页面完成后调用
      */
     mounted() {
-      // 通过$bus接收事件，用于 非父子组件的通信
-      this.$bus.$on('goodsImgLoad', () => {
-        debounce(this.$refs.scroll.refresh, 100)();
-      })
     },
 
     /**
@@ -93,6 +90,8 @@
      */
     deactivated(){
       this.scrollY = this.$refs.scroll.scroll.y;
+      /* 移除自定义事件监听器。只会移除这个回调的监听器。*/
+      this.$bus.$off('goodsImgLoad', this.imgLoadScrollRefreshListener)
     },
     computed:{
       showGoods(){
