@@ -473,7 +473,7 @@ export const recommendData = [
     price: 128.00,
     cfav: '100+',
     info: {
-      img: 'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/162523/9/14830/224578/605ea827Ee7afc940/2aab24632f810b59.jpg!cc_100x100!q70.dpg.webp',
+      img: 'http://img10.360buyimg.com/n7/jfs/t1/168583/11/14509/131142/605b51f5Ec262423d/bbcc873d7782a458.jpg',
     }
   },
   {
@@ -489,7 +489,7 @@ export const recommendData = [
     price: 130.00,
     cfav: '100+',
     info: {
-      img: 'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/170250/5/14659/225513/605ea827E4aea5172/f270317f2808ffc5.jpg!cc_100x100!q70.dpg.webp',
+      img: 'http://img10.360buyimg.com/n2/s270x270_jfs/t1/151316/8/20173/163617/603859a7E16151cd2/310d9c735dbab438.jpg!q70.dpg',
     }
   },
   {
@@ -497,7 +497,7 @@ export const recommendData = [
     price: 128.00,
     cfav: '100+',
     info: {
-      img: 'https://img30.360buyimg.com/shaidan/s128x96_jfs/t1/162523/9/14830/224578/605ea827Ee7afc940/2aab24632f810b59.jpg!cc_100x100!q70.dpg.webp',
+      img: 'http://img10.360buyimg.com/n7/jfs/t1/143092/35/13594/190914/5fa8ad6aE88a0e466/f9c3ade6aeb69461.jpg',
     }
   },
   {

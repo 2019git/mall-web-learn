@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item" @click="goodsClick">
-    <img :src="goods.img" @load="goodsImgLoad">
+    <img :src="showGoodsImg(goods)" @load="goodsImgLoad">
     <div class="goods-info">
       <p>{{goods.title}}</p>
       <span class="price">{{goods.price}}</span>
@@ -21,6 +21,7 @@
       }
     },
     methods: {
+
       /**
        * 商品图片加载事件
        */
@@ -28,11 +29,22 @@
         //通过$bus发出事件，用于 非父子组件的通信
         this.$bus.$emit("goodsImgLoad");
       },
+
       /**
        * 商品点击事件
        */
       goodsClick() {
         this.$router.push('/goodsDetails/' + this.goods.id)
+      },
+
+      /**
+       * 商品展示判断方法
+       */
+      showGoodsImg(goods) {
+        if (null != goods.img) {
+          return goods.img
+        }
+        return goods.info.img
       }
     }
   }

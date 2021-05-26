@@ -7,12 +7,14 @@
       <goods-details-shop-info :shop-info="shopInfo"/>
       <goods-details-info :detail-info="detailInfo" @img-load="_imgLoad"/>
       <goods-details-params :params-info="paramsInfo"/>
+      <goods-details-comment-info :comment="comment"/>
+      <goods-details-recommend-info :recommend-goods="recommendGoods"/>
     </better-scroll>
   </div>
 </template>
 
 <script>
-  import {getGoodsDetails} from '@/network/GoodsDetails'
+  import {getGoodsDetails, getRecommend} from '@/network/GoodsDetails'
 
   import BetterScroll from '@/components/common/scroll/BetterScroll'
 
@@ -22,6 +24,8 @@
   import GoodsDetailsShopInfo from './childrenViews/GoodsDetailsShopInfo'
   import GoodsDetailsInfo from './childrenViews/GoodsDetailsInfo'
   import GoodsDetailsParams from './childrenViews/GoodsDetailsParams'
+  import GoodsDetailsCommentInfo from './childrenViews/GoodsDetailsCommentInfo'
+  import GoodsDetailsRecommendInfo from './childrenViews/GoodsDetailsRecommendInfo'
 
   export default {
     name: "GoodsDetails",
@@ -32,6 +36,8 @@
       GoodsDetailsShopInfo,
       GoodsDetailsInfo,
       GoodsDetailsParams,
+      GoodsDetailsCommentInfo,
+      GoodsDetailsRecommendInfo,
 
       BetterScroll
     },
@@ -42,12 +48,15 @@
         details: {},
         shopInfo: {},
         detailInfo: {},
-        paramsInfo: {}
+        paramsInfo: {},
+        comment: {},
+        recommendGoods: []
       }
     },
     created() {
       this.goodsId = this.$route.params.id
       this._getGoodsDetails()
+      this._getRecommend()
     },
     methods: {
       /**
@@ -61,6 +70,16 @@
           this.shopInfo = res.itemInfo.shopInfo
           this.detailInfo = res.itemInfo.detailInfo;
           this.paramsInfo = res.itemInfo.itemParams;
+          this.comment = res.itemInfo.comment;
+        })
+      },
+
+      /**
+       * 获取推荐信息
+       */
+      _getRecommend: function () {
+        getRecommend().then(res => {
+          this.recommendGoods = res;
           console.log(res);
         })
       },
