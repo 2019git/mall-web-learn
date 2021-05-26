@@ -1,7 +1,7 @@
 /* 数据 */
 
 /* 分类数据 */
-const category = [
+export const category = [
   {
     "level": 0,
     "name": "热门推荐",
