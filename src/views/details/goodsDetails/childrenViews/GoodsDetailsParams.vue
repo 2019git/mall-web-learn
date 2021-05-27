@@ -1,3 +1,4 @@
+<!-- 尺码信息、产品参数 -->
 <template>
   <div class="details-params" v-if="Object.keys(paramsInfo).length !== 0">
     <div class="details-params-rule">

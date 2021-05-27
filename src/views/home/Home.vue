@@ -5,7 +5,7 @@
     </nav-bar>
     <tab-control :titles="['流行','新款','精选']" @tab-control-click="tabControlClick" ref="tabControl1" v-show="isOffsetTop" class="tab-control" ></tab-control>
 
-    <better-scroll class="content" ref="scroll" :probeType = "3" :pullUpload = "true" @isBackTopShow="isBackTopShow">
+    <better-scroll class="content" ref="scroll" :probeType="3" :pullUpload="true" @sendScrollPosition="isBackTopShow">
       <home-swiper :banner="banner" @load-tab-control-location = "loadTabControlLocation"></home-swiper>
       <recommend-view :recommend="recommend"></recommend-view>
       <feature-view></feature-view>

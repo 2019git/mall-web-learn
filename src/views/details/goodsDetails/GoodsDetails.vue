@@ -1,14 +1,15 @@
 <template>
   <div class="goods-details">
-    <goods-details-nav-bar class="nav-bar"/>
-    <better-scroll class="content" ref="scroll" :probeType="3" :pullUpload="true">
+    <goods-details-nav-bar class="nav-bar" @jump-position="_jumpPosition" ref="detailsNavBar"/>
+    <better-scroll class="content" ref="scroll" :probeType="3" :pullUpload="true"
+                   @sendScrollPosition="_updateNavBarStatus">
       <goods-details-swiper :topImages="topImages"/>
       <goods-details-base-info :goodsInfo="details"/>
       <goods-details-shop-info :shop-info="shopInfo"/>
       <goods-details-info :detail-info="detailInfo" @img-load="_imgLoad"/>
-      <goods-details-params :params-info="paramsInfo"/>
-      <goods-details-comment-info :comment="comment"/>
-      <goods-details-recommend-info :recommend-goods="recommendGoods"/>
+      <goods-details-params :params-info="paramsInfo" ref="detailsParams"/>
+      <goods-details-comment-info :comment="comment" ref="detailsComment"/>
+      <goods-details-recommend-info :recommend-goods="recommendGoods" ref="detailsRecommendInfo"/>
     </better-scroll>
   </div>
 </template>
@@ -16,6 +17,7 @@
 <script>
   import {getGoodsDetails, getRecommend} from '@/network/GoodsDetails'
   import {imgLoadScrollRefreshListenerMixin} from '@/common/mixin'
+  import {debounce} from '@/common/utils'
 
   import BetterScroll from '@/components/common/scroll/BetterScroll'
 
@@ -52,6 +54,7 @@
         paramsInfo: {},
         comment: {},
         recommendGoods: [],
+        detailsViewsY: []
       }
     },
     mixins: [imgLoadScrollRefreshListenerMixin],
@@ -92,8 +95,37 @@
       },
       /* 商品详情图片加载完成调用，刷新scroll */
       _imgLoad() {
-        this.$refs.scroll.refresh()
+        this.$refs.scroll.refresh();
+
+        //加载组件位置
+        this.detailsViewsY.push(0)
+        this.detailsViewsY.push(this.$refs.detailsParams.$el.offsetTop)
+        this.detailsViewsY.push(this.$refs.detailsComment.$el.offsetTop)
+        this.detailsViewsY.push(this.$refs.detailsRecommendInfo.$el.offsetTop)
       },
+
+      /* 位置跳转 */
+      _jumpPosition(index) {
+        debounce(() => this.$refs.scroll.scroll.scrollTo(0, -this.detailsViewsY[index], 300), 100)()
+      },
+
+      /* 修改NavBar状态  */
+      _updateNavBarStatus(position) {
+        const y = -position.y;
+        let index = 0;
+        if (y < this.detailsViewsY[1]) {
+          index = 0
+        } else if (y >= this.detailsViewsY[1] && y < this.detailsViewsY[2]) {
+          index = 1
+        } else if (y >= this.detailsViewsY[2] && y < this.detailsViewsY[3]) {
+          index = 2
+        } else {
+          index = 3
+        }
+        if (this.$refs.detailsNavBar.currentIndex !== index) {
+          this.$refs.detailsNavBar.currentIndex = index;
+        }
+      }
     }
   }
 </script>

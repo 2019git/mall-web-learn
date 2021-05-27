@@ -27,7 +27,8 @@
     },
     methods: {
       itemClick(index) {
-        this.currentIndex = index
+        this.currentIndex = index;
+        this.$emit('jump-position', index)
       },
       imgClick() {
         this.$router.back()

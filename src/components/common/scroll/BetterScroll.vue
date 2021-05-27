@@ -43,7 +43,7 @@
 
       // 2. 监听滚动位置  position位置信息
       this.scroll.on('scroll', position => {
-        this.$emit('isBackTopShow', position);
+        this.$emit('sendScrollPosition', position);
         // console.log(position.x,position.y);
       })
 
@@ -61,6 +61,9 @@
         if (this.scroll != null) {
           this.scroll.refresh();
         }
+      },
+      scrollTo(x, y, time = 100) {
+        this.scroll && this.scroll.scrollTo(x, y, time)
       }
     }
   }
