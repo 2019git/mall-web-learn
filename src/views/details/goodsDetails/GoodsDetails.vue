@@ -11,6 +11,8 @@
       <goods-details-comment-info :comment="comment" ref="detailsComment"/>
       <goods-details-recommend-info :recommend-goods="recommendGoods" ref="detailsRecommendInfo"/>
     </better-scroll>
+    <back-top v-show="backTopShow" @click.native="_backTopClick"/>
+    <goods-details-bottom-bar/>
   </div>
 </template>
 
@@ -20,6 +22,7 @@
   import {debounce} from '@/common/utils'
 
   import BetterScroll from '@/components/common/scroll/BetterScroll'
+  import BackTop from '@/components/content/backTop/BackTop'
 
   import GoodsDetailsNavBar from './childrenViews/GoodsDetailsNavBar'
   import GoodsDetailsSwiper from './childrenViews/GoodsDetailsSwiper'
@@ -29,6 +32,7 @@
   import GoodsDetailsParams from './childrenViews/GoodsDetailsParams'
   import GoodsDetailsCommentInfo from './childrenViews/GoodsDetailsCommentInfo'
   import GoodsDetailsRecommendInfo from './childrenViews/GoodsDetailsRecommendInfo'
+  import GoodsDetailsBottomBar from './childrenViews/GoodsDetailsBottomBar'
 
   export default {
     name: "GoodsDetails",
@@ -41,8 +45,10 @@
       GoodsDetailsParams,
       GoodsDetailsCommentInfo,
       GoodsDetailsRecommendInfo,
+      GoodsDetailsBottomBar,
 
-      BetterScroll
+      BetterScroll,
+      BackTop
     },
     data(){
       return {
@@ -54,7 +60,8 @@
         paramsInfo: {},
         comment: {},
         recommendGoods: [],
-        detailsViewsY: []
+        detailsViewsY: [],
+        backTopShow: false
       }
     },
     mixins: [imgLoadScrollRefreshListenerMixin],
@@ -109,7 +116,7 @@
         debounce(() => this.$refs.scroll.scroll.scrollTo(0, -this.detailsViewsY[index], 300), 100)()
       },
 
-      /* 修改NavBar状态  */
+      /* 修改NavBar状态、顶部返回按钮显示  */
       _updateNavBarStatus(position) {
         const y = -position.y;
         let index = 0;
@@ -125,6 +132,14 @@
         if (this.$refs.detailsNavBar.currentIndex !== index) {
           this.$refs.detailsNavBar.currentIndex = index;
         }
+
+        /* 是否显示顶部返回按钮 */
+        this.backTopShow = y > 800 ? true : false
+      },
+
+      /* 返回顶部 */
+      _backTopClick() {
+        this.$refs.scroll.backTop(0, 0, 300)
       }
     }
   }
