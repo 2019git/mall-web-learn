@@ -3,15 +3,12 @@
     <nav-bar class="nav-bar-shopcart">
       <div slot="center">购物车({{_getCartGoodsCount}})</div>
     </nav-bar>
-    <better-scroll class="content">
-      <cart-goods-list :goods-list="_getCartGoodsList"></cart-goods-list>
-    </better-scroll>
+    <cart-goods-list :goods-list="_getCartGoodsList"></cart-goods-list>
   </div>
 </template>
 
 <script>
   import NavBar from '@/components/common/navbar/NavBar.vue'
-  import BetterScroll from '@/components/common/scroll/BetterScroll'
 
   import CartGoodsList from './childrenViews/CartGoodsList'
 
@@ -19,7 +16,6 @@
     name: "Shopcart",
     components: {
       NavBar,
-      BetterScroll,
 
       CartGoodsList
     },
@@ -36,16 +32,11 @@
 
 <style scoped>
   .shop-cart {
-    height: 100%;
+    height: 100vh;
   }
 
   .nav-bar-shopcart {
     background-color: var(--color-tint);
     color: white;
-  }
-
-  .content {
-    height: calc(100% - 44px - 49px);
-    background-color: white;
   }
 </style>
