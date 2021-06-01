@@ -12,7 +12,7 @@
       <goods-details-recommend-info :recommend-goods="recommendGoods" ref="detailsRecommendInfo"/>
     </better-scroll>
     <back-top v-show="backTopShow" @click.native="_backTopClick"/>
-    <goods-details-bottom-bar/>
+    <goods-details-bottom-bar @add-shop-cart="_addShopCart"/>
   </div>
 </template>
 
@@ -140,6 +140,16 @@
       /* 返回顶部 */
       _backTopClick() {
         this.$refs.scroll.backTop(0, 0, 300)
+      },
+
+      /* 加入购物车 */
+      _addShopCart() {
+        const obj = {};
+        obj.id = this.goodsId;
+        obj.img = this.topImages[0];
+        obj.title = this.details.title;
+        obj.price = this.details.realPrice;
+        this.$store.commit('addCart', obj)
       }
     }
   }

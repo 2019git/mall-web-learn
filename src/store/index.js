@@ -7,7 +7,9 @@ import Actions from './Actions'
 
 Vue.use(Vuex)
 
-const state = {}
+const state = {
+  cartList: []
+}
 
 export default new Vuex.Store({
   state: state,
