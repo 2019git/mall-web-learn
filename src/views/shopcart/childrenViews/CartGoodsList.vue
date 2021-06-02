@@ -29,7 +29,6 @@
       }
     },
     activated() {
-      console.log("1111");
       this.$refs.scroll.refresh();
     }
   }
@@ -39,6 +38,7 @@
 
   .cart-goods-list {
     height: calc(100% - 44px - 49px);
+    width: 100%;
     background-color: white;
   }
 

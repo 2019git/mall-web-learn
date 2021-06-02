@@ -4,6 +4,7 @@
       <div slot="center">购物车({{_getCartGoodsCount}})</div>
     </nav-bar>
     <cart-goods-list :goods-list="_getCartGoodsList"></cart-goods-list>
+    <cart-bottom-bar/>
   </div>
 </template>
 
@@ -11,13 +12,15 @@
   import NavBar from '@/components/common/navbar/NavBar.vue'
 
   import CartGoodsList from './childrenViews/CartGoodsList'
+  import CartBottomBar from './childrenViews/CartBottomBar'
 
   export default {
     name: "Shopcart",
     components: {
       NavBar,
 
-      CartGoodsList
+      CartGoodsList,
+      CartBottomBar
     },
     computed: {
       _getCartGoodsList() {

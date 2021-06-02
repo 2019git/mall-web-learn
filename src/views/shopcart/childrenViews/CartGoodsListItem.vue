@@ -1,7 +1,7 @@
 <template>
   <div class="cart-list-item">
     <div class="item-selector">
-      选择器
+      <selector-button :check="product.check" @check-product="_checkProduct"/>
     </div>
     <div class="item-img">
       <img :src="product.img">
@@ -9,22 +9,33 @@
     <div class="item-right">
       <div class="item-title">{{product.title}}</div>
       <div class="item-right-bottom">
-        <div class="item-price">{{product.price}}</div>
-        <div class="item-count">{{product.count}}</div>
+        <div class="item-price">¥{{product.price}}</div>
+        <div class="item-count">x{{product.count}}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+  import SelectorButton from './SelectorButton'
+
   export default {
     name: "CartGoodsListItem",
+    components: {
+      SelectorButton
+    },
     props: {
       product: {
         type: Object,
         default() {
           return {}
         }
+      }
+    },
+    methods: {
+      _checkProduct() {
+        this.product.check = !this.product.check
       }
     }
   }
@@ -39,7 +50,10 @@
   }
 
   .item-selector {
-    width: 14%;
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .item-img {
@@ -47,15 +61,17 @@
   }
 
   .item-img img {
-    height: 180px;
-    width: 150px;
+    height: 120px;
+    width: 100px;
     border-radius: 5px;
   }
 
   .item-right {
-    font-size: 17px;
+    font-size: 15px;
     color: black;
-    padding: 5px 10px;
+    padding: 5px 0px 5px 10px;
+    width: calc(100% - 5% - 110px);
+    position: relative;
   }
 
   .item-title {
@@ -65,14 +81,21 @@
   }
 
   .item-right-bottom {
-    margin-top: 10px;
-    /*position: absolute;*/
+    font-size: 17px;
+
+    position: absolute;
     bottom: 10px;
-    left: 10px;
-    right: 10px;
+    width: calc(100% - 10px);
+    display: flex;
+    justify-content: space-between;
   }
 
   .item-right-bottom .item-price {
     color: orangered;
+  }
+
+  .item-right-bottom .item-count {
+    margin-right: 10px;
+
   }
 </style>
