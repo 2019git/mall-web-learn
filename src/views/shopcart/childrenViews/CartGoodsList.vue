@@ -37,7 +37,7 @@
 <style scoped>
 
   .cart-goods-list {
-    height: calc(100% - 44px - 49px);
+    height: calc(100% - 44px - 49px - 44px);
     width: 100%;
     background-color: white;
   }

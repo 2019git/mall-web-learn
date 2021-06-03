@@ -34,3 +34,11 @@ export function formatDate(date, fmt) {
 function padLeftZero(str) {
   return ('00' + str).substr(str.length);
 };
+
+export function isEmptyArray(coll) {
+  if (coll === null || coll.length === 0) {
+    return true;
+  }
+  return false;
+}
+

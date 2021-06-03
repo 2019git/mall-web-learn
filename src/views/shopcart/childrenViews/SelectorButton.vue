@@ -1,5 +1,5 @@
 <template>
-  <div class="selector-button" :class="{active: isCheck}" @click="_imgClick">
+  <div class="selector-button" :class="{active: check}" @click="_imgClick">
     <img src="~@/assets/img/cart/tick.svg">
   </div>
 </template>
@@ -15,15 +15,15 @@
         }
       }
     },
-    data() {
-      return {
-        isCheck: this.check
-      }
-    },
+    // data() {
+    //   return {
+    //     isCheck: this.check
+    //   }
+    // },
     methods: {
       _imgClick() {
         this.$emit('check-product')
-        this.isCheck = !this.isCheck
+        // this.isCheck = !this.isCheck
       }
     }
   }

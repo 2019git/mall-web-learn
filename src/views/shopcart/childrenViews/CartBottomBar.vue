@@ -1,6 +1,6 @@
 <template>
   <div class="cart-bar">
-    <selector-button class="all-select"></selector-button>
+    <!--<selector-button class="all-select"></selector-button>-->
     <span class="all-select-span">全选</span>
     <span class="total-price">合计:¥{{_getCartGoodsCheckPrice}}</span>
     <span class="to-compute">去计算({{_getCartGoodsCheckCount}})</span>
@@ -10,6 +10,8 @@
 <script>
   import SelectorButton from './SelectorButton'
 
+  import {isEmptyArray} from '@/common/utils'
+
   export default {
     name: "CartBottomBar",
     components: {
@@ -17,13 +19,13 @@
     },
     computed: {
       _getCartGoodsCheckCount() {
-        if (!this.$store.getters.cartList) {
+        if (isEmptyArray(this.$store.getters.cartList) || isEmptyArray(this.$store.getters.cartList.filter(o => o.check))) {
           return 0
         }
-        return this.$store.getters.cartList.filter(o => o.check).length
+        return this.$store.getters.cartList.filter(o => o.check).map(o => o.count).reduce((x, y) => x + y)
       },
       _getCartGoodsCheckPrice() {
-        if (!this.$store.getters.cartList) {
+        if (isEmptyArray(this.$store.getters.cartList) || isEmptyArray(this.$store.getters.cartList.filter(o => o.check))) {
           return 0
         }
         return this.$store.getters.cartList.filter(o => o.check).map(o => o.price * o.count).reduce((x, y) => x + y)
@@ -38,7 +40,7 @@
     height: 44px;
     line-height: 44px;
     position: fixed;
-    bottom: 50px;
+    bottom: 49px;
     background-color: #eee;
     box-shadow: 0 -2px 3px rgba(0, 0, 0, .2);
     font-size: 14px;
