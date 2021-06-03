@@ -1,6 +1,6 @@
 <template>
   <div class="cart-bar">
-    <!--<selector-button class="all-select"></selector-button>-->
+    <selector-button class="all-select" :check="_isAllSelect" @click.native="_allSelect"/>
     <span class="all-select-span">全选</span>
     <span class="total-price">合计:¥{{_getCartGoodsCheckPrice}}</span>
     <span class="to-compute">去计算({{_getCartGoodsCheckCount}})</span>
@@ -17,6 +17,11 @@
     components: {
       SelectorButton
     },
+    data() {
+      return {
+        isAllSelect: false
+      }
+    },
     computed: {
       _getCartGoodsCheckCount() {
         if (isEmptyArray(this.$store.getters.cartList) || isEmptyArray(this.$store.getters.cartList.filter(o => o.check))) {
@@ -29,6 +34,21 @@
           return 0
         }
         return this.$store.getters.cartList.filter(o => o.check).map(o => o.price * o.count).reduce((x, y) => x + y)
+      },
+      _isAllSelect() {
+        if (isEmptyArray(this.$store.getters.cartList)) {
+          return false
+        }
+        return !(this.$store.getters.cartList.filter(o => !o.check).length)
+      }
+    },
+    methods: {
+      _allSelect() {
+        if (this._isAllSelect) {
+          this.$store.getters.cartList.forEach(o => o.check = false)
+        } else {
+          this.$store.getters.cartList.forEach(o => o.check = true)
+        }
       }
     }
   }

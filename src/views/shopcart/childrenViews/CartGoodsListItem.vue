@@ -1,7 +1,7 @@
 <template>
   <div class="cart-list-item">
     <div class="item-selector">
-      <selector-button :check="product.check" @check-product="_checkProduct"/>
+      <selector-button :check="product.check" @click.native="_checkProduct"/>
     </div>
     <div class="item-img">
       <img :src="product.img">
