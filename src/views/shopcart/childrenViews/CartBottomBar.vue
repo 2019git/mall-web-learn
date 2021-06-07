@@ -3,7 +3,7 @@
     <selector-button class="all-select" :check="_isAllSelect" @click.native="_allSelect"/>
     <span class="all-select-span">全选</span>
     <span class="total-price">合计:¥{{_getCartGoodsCheckPrice}}</span>
-    <span class="to-compute">去计算({{_getCartGoodsCheckCount}})</span>
+    <span class="to-compute" @click="_toCompute">去计算({{_getCartGoodsCheckCount}})</span>
   </div>
 </template>
 
@@ -48,6 +48,13 @@
           this.$store.getters.cartList.forEach(o => o.check = false)
         } else {
           this.$store.getters.cartList.forEach(o => o.check = true)
+        }
+      },
+
+      _toCompute() {
+        if (this._getCartGoodsCheckCount === 0) {
+          this.$toast.show('购物车为空，不可提交')
+          return;
         }
       }
     }

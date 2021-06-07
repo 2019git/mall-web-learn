@@ -150,6 +150,7 @@
         obj.title = this.details.title;
         obj.price = this.details.realPrice;
         this.$store.commit('addCart', obj)
+        this.$toast.show('加入购物车成功', 2000)
       }
     }
   }
