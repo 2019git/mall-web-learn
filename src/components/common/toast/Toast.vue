@@ -1,3 +1,4 @@
+<!-- 提示弹框 -->
 <template>
   <div class="toast" v-show="isShow">
     <div>{{message}}</div>
