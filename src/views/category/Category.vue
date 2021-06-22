@@ -37,21 +37,25 @@
       }
     },
     created() {
-      this._getCategoryList();
+      this._getCategoryList().then(res => {
+        this._categoryClick(this.categoryListInfo[0].cid);
+      });
     },
     methods: {
       /* 获取分类列表数据 */
       _getCategoryList() {
-        getCategoryList().then(res => {
-          this.categoryListInfo = res;
-        })
+        return new Promise((resolve, reject) => {
+          resolve(
+            getCategoryList().then(res => {
+              this.categoryListInfo = res;
+            })
+          );
+        });
       },
-
       /* 获取分类列表详情 */
       _categoryClick(cid) {
         getCategoryItem(cid).then(res => {
           this.categoryItemInfo = res;
-          console.log(res);
         })
       }
     }
@@ -61,7 +65,7 @@
 <style scoped>
   .category {
     width: 100%;
-    height: calc(100% - 44px - 49px);
+    height: calc(100vh - 49px);
   }
 
   .nav-bar-category {
