@@ -8,7 +8,7 @@
       -->
     </nav-bar>
     <category-list :category-list-info="categoryListInfo" @category-click="_categoryClick"/>
-    <category-list-item :category-item-info="categoryItemInfo"/>
+    <category-list-item id="categoryListItem" :category-item-info="categoryItemInfo"/>
   </div>
 </template>
 
@@ -56,6 +56,8 @@
       _categoryClick(cid) {
         getCategoryItem(cid).then(res => {
           this.categoryItemInfo = res;
+          /* overflow-y: auto 滚动条返回顶部 */
+          document.getElementById('categoryListItem').scrollTop = 0
         })
       }
     }
