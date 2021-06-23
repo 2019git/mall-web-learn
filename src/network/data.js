@@ -550,6 +550,37 @@ export const recommendData = [
   }
 ]
 
+export const profileData = [
+  {
+    icon: require('@/assets/img/profile/mine/icon_person.png'),
+    name: '企业信息'
+  },
+  {
+    icon: require('@/assets/img/profile/mine/icon_certificate.png'),
+    name: '资质认证'
+  },
+  {
+    icon: require('@/assets/img/profile/mine/icon_car.png'),
+    name: '车辆管理'
+  },
+  {
+    icon: require('@/assets/img/profile/mine/icon_msg.png'),
+    name: '消息中心'
+  },
+  {
+    icon: require('@/assets/img/profile/mine/video.png'),
+    name: '视频教程'
+  },
+  {
+    icon: require('@/assets/img/profile/mine/icon_about.png'),
+    name: '关于我们'
+  },
+  {
+    icon: require('@/assets/img/profile/mine/icon_set.png'),
+    name: '系统设置'
+  }
+]
+
 
 
 
