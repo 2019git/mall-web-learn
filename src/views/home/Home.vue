@@ -119,6 +119,12 @@
       },
       getHomeMultidata(){
         getHomeMultidata().then(res => {
+          res.data.banner.list.unshift({
+            "height": 390,
+            "image": require('@/assets/img/common/build-party.jpg'),
+            "link": "",
+            "width": 750,
+          })
           this.banner = res.data.banner.list;
           this.recommend = res.data.recommend.list;
         })
